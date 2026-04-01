@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Differential Linear Operator — Linearity + Computations (Dark Mode)</title>
+<title>אופרטור דיפרנציאלי לינארי — לינאריות + חישובים (מצב כהה)</title>
 <style>
   :root{
     --bg:#0b1220; --ink:#e5e7eb; --muted:#94a3b8;
@@ -70,21 +70,19 @@
   .hl-teal{color:var(--teal); font-weight:400; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif !important}
   .hl-magenta{color:var(--magenta); font-weight:400; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif !important}
   .hl-green{color:var(--green); font-weight:400; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif !important}
-
-  footer{border-top:1px solid var(--border);padding:12px 0;text-align:center;color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap title">
-    <h1>Linear Mapping — Illustration — Preservation of Addition: L(u+v) = L(u) + L(v)</h1>
+    <h1>העתקה לינארית - המחשה - שמירה על פעולת החיבור: L(u+v) = L(u) + L(v)</h1>
     <div class="controls">
-      <button id="prevBtn">Previous</button>
-      <button id="playBtn">Play</button>
-      <button id="pauseBtn" style="display:none">Pause</button>
-      <button id="nextBtn">Next</button>
-      <button id="resetBtn">Reset</button>
-      <span id="stepText" class="note">Step 1 of 8</span>
+      <button id="prevBtn">הקודם</button>
+      <button id="playBtn">הפעל</button>
+      <button id="pauseBtn" style="display:none">עצור</button>
+      <button id="nextBtn">הבא</button>
+      <button id="resetBtn">איפוס</button>
+      <span id="stepText" class="note">שלב 1 מתוך 8</span>
     </div>
   </div>
 </header>
@@ -92,7 +90,7 @@
 <main class="wrap">
   <div class="grid3">
     <aside class="card">
-      <h3>Operator Definition</h3>
+      <h3>הגדרת האופרטור</h3>
       <div class="mathbox">
         <div class="eq big blk">[<i>L</i>] : <i>C</i><sup>2</sup>(<i>I</i>) <span class="arrow">➜</span> <i>C</i>(<i>I</i>)</div>
         <div class="eq blk">( <i>L y</i> )( <i>x</i> ) =</div>
@@ -101,26 +99,26 @@
     </aside>
 
     <section class="card">
-      <h3>Animation</h3>
+      <h3>אנימציה</h3>
       <div class="controls" style="justify-content:center;gap:12px;margin:8px 0">
-        <div><label class="note">Choose u₁:</label>
+        <div><label class="note">בחרו u₁:</label>
           <select id="func1Select">
-            <option value="general">u₁ (general)</option><option value="sin">sin(x)</option>
+            <option value="general">u₁ (כללי)</option><option value="sin">sin(x)</option>
             <option value="cos">cos(x)</option><option value="exp">eˣ</option><option value="poly">x²</option>
           </select>
         </div>
-        <div><label class="note">Choose u₂:</label>
+        <div><label class="note">בחרו u₂:</label>
           <select id="func2Select">
-            <option value="general">u₂ (general)</option><option value="exp">eˣ</option>
+            <option value="general">u₂ (כללי)</option><option value="exp">eˣ</option>
             <option value="sin">sin(x)</option><option value="cos">cos(x)</option><option value="poly">x²</option>
           </select>
         </div>
-        <div><label class="note">Speed</label>
+        <div><label class="note">מהירות</label>
           <input id="speed" type="number" step="0.1" min="0.5" max="3" value="1" style="width:70px">
         </div>
       </div>
 
-      <div id="err" class="err">For a clear visual illustration, please choose two different functions</div>
+      <div id="err" class="err">להמחשה ויזואלית ברורה, נא לבחור שתי פונקציות שונות</div>
 
       <div class="stage-wrap">
         <svg id="svg" class="stage" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
@@ -140,21 +138,21 @@
     </section>
 
     <aside class="card">
-      <h3>Operator Computation</h3>
+      <h3>חישוב פעולת האופרטור</h3>
       <div class="calc">
-        <div class="sec"><div class="head">1) Operator on each function:</div>
+        <div class="sec"><div class="head">1) אופרטור על כל פונקציה:</div>
           <div class="eq"><span class="mono">L[y] = y″ + p(x)·y′ + q(x)·y</span></div></div>
         <div class="sec" id="calcLeftRight">
-          <div class="head">2) Separate computation</div>
+          <div class="head">2) חישוב נפרד</div>
           <div class="eq" id="eq_u1"></div>
           <div class="eq" id="eq_u2" style="margin-top:6px"></div>
         </div>
         <div class="sec" id="calcSum">
-          <div class="head">3) Computation on the sum</div>
+          <div class="head">3) חישוב על הסכום</div>
           <div class="eq" id="eq_sum"></div>
         </div>
         <div class="sec">
-          <div class="head">4) Linearity equality</div>
+          <div class="head">4) שוויון לינאריות</div>
           <div class="eq"><span class="hl-magenta">L(u₁)</span> <span style="color:#e5e7eb">+</span> <span class="hl-magenta">L(u₂)</span> <span style="color:#e5e7eb">=</span>
             <span class="hl-teal">L(u₁ + u₂)</span></div>
         </div>
@@ -163,12 +161,8 @@
   </div>
 </main>
 
-<footer>
-  <div class="wrap">&copy; Developed by Shir Sivroni | All rights reserved</div>
-</footer>
-
 <script>
-/* ========= Base ========= */
+/* ========= בסיס ========= */
 const F = {sin:'sin(x)', cos:'cos(x)', exp:'e^x', poly:'x²'};
 function pt(id,x,y,label){ return {type:'pt',id,x,y,label}; }
 function arr(id,kind,x1,y1,x2,y2){ return {type:'arr',id,kind,x1,y1,x2,y2}; }
@@ -198,13 +192,13 @@ const steps = {
                        arr('a1s','magenta',206,100,444,150), arr('a2s','magenta',266,200,444,150)]}
 };
 
-/* SVG layers */
+/* שכבות SVG */
 const gSpaces=document.getElementById('gSpaces');
 const gArrows=document.getElementById('gArrows');
 const gPoints=document.getElementById('gPoints');
 const gLabels=document.getElementById('gLabels');
 
-/* State and UI */
+/* מצב ו־UI */
 let current=1, minStep=1, maxStep=8, playing=false, timer=null, lastEls=[];
 const slider=document.getElementById('slider');
 const stepText=document.getElementById('stepText');
@@ -218,7 +212,7 @@ const f1Sel=document.getElementById('func1Select');
 const f2Sel=document.getElementById('func2Select');
 const err=document.getElementById('err');
 
-/* Derivatives and L display */
+/* גזירות ותצוגת L */
 function d1(name){ switch(name){ case'sin':return'cos(x)'; case'cos':return'−sin(x)'; case'exp':return'eˣ'; case'poly':return'2x'; default:return"u′(x)"; } }
 function d2(name){ switch(name){ case'sin':return'−sin(x)'; case'cos':return'−cos(x)'; case'exp':return'eˣ'; case'poly':return'2';  default:return"u″(x)"; } }
 function labelOf(name){ return name==='poly'?'x²':(name==='exp'?'eˣ':((name==='sin'||name==='cos')?name+'(x)':'u')); }
@@ -237,7 +231,7 @@ function computePanel(){
   document.getElementById('eq_sum').innerHTML=`<span class="hl-teal">${Ls}</span>`;
 }
 
-/* Render + arrow animation */
+/* רנדר + אנימציית חיצים */
 function render(step){
   const s=steps[step]; if(!s) return;
   const f1=f1Sel.value, f2=f2Sel.value;
@@ -282,7 +276,7 @@ function render(step){
       c.setAttribute('cx',el.x); c.setAttribute('cy',el.y-4); c.setAttribute('r',5.5); c.setAttribute('class','node');
       gPoints.appendChild(c);
       const t=document.createElementNS('http://www.w3.org/2000/svg','text');
-      t.setAttribute('x',el.x); t.setAttribute('y',el.y+18);
+      t.setAttribute('x',el.x); t.setAttribute('y',el.y+18); 
       const classes = 'math-text label-purple' + (step===8 && el.label.includes('=') ? ' highlight' : '');
       t.setAttribute('class', classes);
       t.textContent=mapLabel(el.label); gLabels.appendChild(t);
@@ -311,8 +305,8 @@ function render(step){
   });
   lastEls=s.els||[];
   computePanel();
-
-  // Pulse computation card at step 8
+  
+  // הבהוב של ריבוע החישובים בשלב 8
   if(step===8){
     calcCard.classList.remove('pulse');
     setTimeout(()=>calcCard.classList.add('pulse'), 50);
@@ -321,25 +315,25 @@ function render(step){
   }
 }
 
-/* Controls */
+/* שליטה */
 const calcCard = document.querySelector('.card:last-child');
 function setRange(){
   const f1=f1Sel.value, f2=f2Sel.value;
   const sameSpecificFunction = (f1!=='general' && f2!=='general' && f1===f2);
-
+  
   err.style.display = sameSpecificFunction ? 'block' : 'none';
   slider.disabled = sameSpecificFunction;
-
+  
   if(!sameSpecificFunction){
     current=1; render(current); updateUI();
-    // Flash computation card
+    // הבהוב של ריבוע החישובים
     calcCard.classList.remove('flash');
     setTimeout(()=>calcCard.classList.add('flash'), 10);
   }
 }
 function updateUI(){
   slider.value=current;
-  stepText.textContent=`Step ${current-minStep+1} of ${maxStep-minStep+1}`;
+  stepText.textContent=`שלב ${current-minStep+1} מתוך ${maxStep-minStep+1}`;
   prevBtn.disabled=current===minStep; nextBtn.disabled=current===maxStep;
 }
 function play(){
@@ -349,7 +343,7 @@ function play(){
 }
 function pause(){ playing=false; playBtn.style.display='inline-block'; pauseBtn.style.display='none'; if(timer){clearInterval(timer); timer=null;} }
 
-/* Events */
+/* אירועים */
 prevBtn.addEventListener('click',()=>{ pause(); if(current>minStep){ current--; render(current); updateUI(); }});
 nextBtn.addEventListener('click',()=>{ pause(); if(current<maxStep){ current++; render(current); updateUI(); }});
 resetBtn.addEventListener('click',()=>{ pause(); current=minStep; render(current); updateUI(); });
@@ -357,10 +351,10 @@ slider.addEventListener('input',e=>{ pause(); current=parseInt(e.target.value,10
 playBtn.addEventListener('click',play); pauseBtn.addEventListener('click',pause);
 [f1Sel,f2Sel].forEach(el=>el.addEventListener('change',()=>{ pause(); setRange(); }));
 
-/* Initialize */
+/* התחלה */
 render(current); updateUI(); computePanel();
 
-// Initial blink of interactive controls
+// הבהוב ראשוני של כפתורים אינטראקטיביים
 setTimeout(()=>{
   playBtn.classList.add('blink');
   f1Sel.classList.add('blink');
